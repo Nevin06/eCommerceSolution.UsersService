@@ -6,6 +6,12 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = false;
+    options.AppendTrailingSlash = false;
+}); // Thomas
+
 // Add infrastructure services to the dependency injection container
 builder.Services.AddInfrastructure();
 builder.Services.AddCore();
