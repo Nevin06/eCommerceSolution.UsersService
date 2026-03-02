@@ -19,6 +19,13 @@ namespace eCommerce.API.Controllers
         [HttpGet("{userID}")]
         public async Task<IActionResult> GetUserByUserID(Guid userID) //102
         {
+            //118
+            //await Task.Delay(1000);
+            //throw new NotImplementedException();
+
+            //126
+            //await Task.Delay(10000); //10s
+
             if (userID == Guid.Empty)
             {
                 return BadRequest("Invalid User ID");
