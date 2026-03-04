@@ -28,7 +28,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:4200") // Allow requests from the specified origin (e.g., Angular development server)
+        builder.WithOrigins("http://localhost:4200", "http://127.0.0.1:4200") // Allow requests from the specified origin (e.g., Angular development server)
         //.AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader();
@@ -55,12 +55,12 @@ app.UseExceptionHandlingMiddleware();
 
 // Routing
 app.UseRouting();
+app.UseCors(); // Enable CORS for all origins, methods, and headers. This allows the API to be accessed from any domain, which is useful for development and testing purposes. In production, you may want to configure CORS more restrictively to enhance security by specifying allowed origins, methods, and headers based on your application's requirements.
 
 app.UseSwagger(); //29
 app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1")
 ); //29
-app.UseCors(); // Enable CORS for all origins, methods, and headers. This allows the API to be accessed from any domain, which is useful for development and testing purposes. In production, you may want to configure CORS more restrictively to enhance security by specifying allowed origins, methods, and headers based on your application's requirements.
 
 // Authentication and Authorization Middleware
 app.UseAuthentication();
